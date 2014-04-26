@@ -1,0 +1,32 @@
+# ##############################################################################
+
+# iCEcube PCF
+
+# Version:            2013.12.25022
+
+# File Generated:     Apr 25 2014 01:51:34
+
+# Family & Device:    iCE40HX8K
+
+# Package:            CT256
+
+# ##############################################################################
+
+###IOSet List 12
+set_io LED2 B4
+set_io LED3 A2
+set_io LED4 A1
+set_io LED6 C4
+set_io LED7 B3
+set_io LED8 C3
+set_io LED9 B5
+set_io break_o C5 -pullup no
+set_io clk_i J3
+set_io rs232_rx_i B10
+set_io rs232_tx_o B12
+set_io rst_i H16 -pullup yes
+
+###ProDemote List 2
+demote_signal_unbuffered io_map.timerinst.un1_sample_0_g
+demote_signal_unbuffered zpu.insn_1_sqmuxa_g
+

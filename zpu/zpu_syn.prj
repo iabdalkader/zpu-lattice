@@ -1,0 +1,68 @@
+#-- Synopsys, Inc.
+#-- Project file /tmp//zpu/zpu_syn.prj
+#project files
+
+add_file -vhdl -lib work "hdl/br_gen.vhdl" 
+add_file -vhdl -lib work "hdl/gpio.vhdl" 
+add_file -vhdl -lib work "hdl/rx_unit.vhdl" 
+add_file -vhdl -lib work "hdl/tx_unit.vhdl" 
+add_file -vhdl -lib work "hdl/txt_util.vhdl" 
+add_file -vhdl -lib work "hdl/timer.vhdl" 
+add_file -vhdl -lib work "hdl/debounce.vhdl" 
+add_file -vhdl -lib work "hdl/phi_io.vhdl" 
+add_file -vhdl -lib work "hdl/bram.vhdl" 
+add_file -vhdl -lib work "hdl/rom_pkg.vhdl" 
+add_file -vhdl -lib work "hdl/zpu_medium.vhdl" 
+add_file -vhdl -lib work "hdl/zpu_pkg.vhdl" 
+add_file -vhdl -lib work "hdl/zpu_top.vhdl" 
+add_file -constraint -lib work "zpu.sdc"
+#implementation: "zpu_Implmnt"
+impl -add zpu_Implmnt -type fpga
+
+#implementation attributes
+set_option -vlog_std v2001
+set_option -project_relative_includes 1
+
+#device options
+set_option -technology SBTiCE40
+set_option -part iCE40HX8K
+set_option -package CT256
+set_option -speed_grade 
+set_option -part_companion ""
+
+#compilation/mapping options
+
+# mapper_options
+set_option -frequency auto
+set_option -write_verilog 0
+set_option -write_vhdl 0
+
+# Silicon Blue iCE40
+set_option -maxfan 10000
+set_option -disable_io_insertion 0
+set_option -pipe 1
+set_option -retiming 0
+set_option -update_models_cp 0
+set_option -fixgatedclocks 2
+set_option -fixgeneratedclocks 0
+
+# NFilter
+set_option -popfeed 0
+set_option -constprop 0
+set_option -createhierarchy 0
+
+# sequential_optimization_options
+set_option -symbolic_fsm_compiler 1
+
+# Compiler Options
+set_option -compiler_compatible 0
+set_option -resource_sharing 1
+
+#automatic place and route (vendor) options
+set_option -write_apr_constraint 1
+
+#set result format/file last
+project -result_format "edif"
+project -result_file ./zpu_Implmnt/zpu.edf
+project -log_file "./zpu_Implmnt/zpu.srr"
+impl -active zpu_Implmnt
